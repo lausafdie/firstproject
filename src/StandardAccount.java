@@ -6,6 +6,10 @@
  * withdraw 500 - we will only get 200.
  */
 public class StandardAccount implements IAccount {
+    int accountNumber;
+    double accountBalance;
+    double creditLimit;
+
     /**
      * This constructor gets as an argument the account number represented as
      * an integer and the account credit limit as a double.
@@ -16,20 +20,38 @@ public class StandardAccount implements IAccount {
      * @param creditLimit the non-positive credit limit
      */
     public StandardAccount(int accountNumber, double creditLimit) {
+        this.accountNumber = accountNumber;
+        if(creditLimit > 0) {
+            this.creditLimit = 0;
+        }
+        else {
+            this.creditLimit = creditLimit;
+        }
+        accountBalance = 0;
     }
 
     public void Deposit(double amount) {
+        accountBalance += amount;
     }
 
     public double Withdraw(double amount) {
-        return 0;
+        double resultingBalance = accountBalance - amount;
+        double withdrawnAmount = amount;
+
+        if(resultingBalance < creditLimit) {
+            resultingBalance = creditLimit;
+            withdrawnAmount = accountBalance - creditLimit;
+        }
+
+        accountBalance = resultingBalance;
+        return withdrawnAmount;
     }
 
     public double GetCurrentBalance() {
-        return 0;
+        return accountBalance;
     }
 
     public int GetAccountNumber() {
-        return 0;
+        return accountNumber;
     }
 }
