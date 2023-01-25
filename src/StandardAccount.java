@@ -21,12 +21,14 @@ public class StandardAccount implements IAccount {
      */
     public StandardAccount(int accountNumber, double creditLimit) {
         this.accountNumber = accountNumber;
+
         if(creditLimit > 0) {
             this.creditLimit = 0;
         }
         else {
             this.creditLimit = creditLimit;
         }
+
         accountBalance = 0;
     }
 

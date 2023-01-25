@@ -6,6 +6,10 @@
  * get only 100. The credit limit rules also applies to this account.
  */
 public class BasicAccount implements IAccount {
+    int accountNumber;
+    double accountBalance;
+    double withdrawalLimit;
+
     /**
      * This constructor gets as an argument the account number represented
      * as an integer and the withdrawal limit as a positive double.
@@ -13,20 +17,38 @@ public class BasicAccount implements IAccount {
      * @param withdrawalLimit the withdrawal limit
      */
     public BasicAccount(int accountNumber, double withdrawalLimit) {
+        this.accountNumber = accountNumber;
+        this.withdrawalLimit = withdrawalLimit;
+        accountBalance = 0;
     }
 
     public void Deposit(double amount) {
+        accountBalance += amount;
     }
 
     public double Withdraw(double amount) {
-        return 0;
+        double actualAmount = amount;
+        if(actualAmount > withdrawalLimit) {
+            actualAmount = withdrawalLimit;
+        }
+
+        double resultingBalance = accountBalance - actualAmount;
+        double withdrawnAmount = actualAmount;
+
+        if(resultingBalance < 0) {
+            resultingBalance = 0;
+            withdrawnAmount = accountBalance;
+        }
+
+        accountBalance = resultingBalance;
+        return withdrawnAmount;
     }
 
     public double GetCurrentBalance() {
-        return 0;
+        return accountBalance;
     }
 
     public int GetAccountNumber() {
-        return 0;
+        return accountNumber;
     }
 }
