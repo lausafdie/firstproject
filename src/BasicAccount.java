@@ -28,6 +28,7 @@ public class BasicAccount implements IAccount {
 
     public double Withdraw(double amount) {
         double actualAmount = amount;
+        // If amount exceeds withdrawal limit, only withdraw up to limit
         if(actualAmount > withdrawalLimit) {
             actualAmount = withdrawalLimit;
         }
@@ -35,6 +36,7 @@ public class BasicAccount implements IAccount {
         double resultingBalance = accountBalance - actualAmount;
         double withdrawnAmount = actualAmount;
 
+        // If withdrawn amount exceeds balance, only withdraw max amount
         if(resultingBalance < 0) {
             resultingBalance = 0;
             withdrawnAmount = accountBalance;

@@ -22,6 +22,7 @@ public class StandardAccount implements IAccount {
     public StandardAccount(int accountNumber, double creditLimit) {
         this.accountNumber = accountNumber;
 
+        // Set credit limit to zero if positive value
         if(creditLimit > 0) {
             this.creditLimit = 0;
         }
@@ -40,6 +41,7 @@ public class StandardAccount implements IAccount {
         double resultingBalance = accountBalance - amount;
         double withdrawnAmount = amount;
 
+        // If withdrawn amount exceeds credit limit, only withdraw max amount
         if(resultingBalance < creditLimit) {
             resultingBalance = creditLimit;
             withdrawnAmount = accountBalance - creditLimit;
