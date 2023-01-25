@@ -32,4 +32,11 @@ public class PremiumAccount implements IAccount {
     public int GetAccountNumber() {
         return accountNumber;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Account %d\nType: Premium\nBalance: %.2f",
+                accountNumber,
+                accountBalance);
+    }
 }

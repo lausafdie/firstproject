@@ -53,4 +53,12 @@ public class BasicAccount implements IAccount {
     public int GetAccountNumber() {
         return accountNumber;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Account %d\nType: Basic\nBalance: %.2f\nWithdrawal Limit: %.2f",
+            accountNumber,
+            accountBalance,
+            withdrawalLimit);
+    }
 }

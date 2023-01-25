@@ -58,4 +58,13 @@ public class StandardAccount implements IAccount {
     public int GetAccountNumber() {
         return accountNumber;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Account %d\nType: Standard\nBalance: %.2f\nCredit Limit: %.2f",
+            accountNumber,
+            accountBalance,
+            creditLimit
+        );
+    }
 }
